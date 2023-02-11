@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,19 +26,41 @@ class App extends StatelessWidget {
     // 2. CupertinoApp 앱을 return [애플 디자인 시스템]
     // 이는 우리가 어떤 family 스타일을 사용할지 flutter에게 알리는 역할을 한다.
     return MaterialApp(
-      home: Scaffold(
-        // home: 우리 앱의 home에 있을 때 보여진다.
-        appBar: AppBar(
-          title: Text('Hello flutter!'),
-          centerTitle: false,
-          elevation: 100, // 그림자
-        ),
-        body: Center(
-          // Center Widget: child를 가운데 정렬해주는 Widget
-          child: Text('Hello world!'),
-        ),
-      ), // Scaffold MaterialApp 클래스의 property 이것도 Widget 타입
-    );
+        home: Scaffold(
+            // home: 우리 앱의 home에 있을 때 보여진다.
+            backgroundColor: Color(0xFF181818),
+            body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, // 하나의 Row(수평 방향)에서 가장 끝으로
+                    children: [
+                      SizedBox(
+                        // SizedBox를 이용해서 공간을 만든다.
+                        height: 80,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text("Hey, Jenny",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.w800)),
+                          Text(
+                            "Welcome back",
+                            style:
+                                TextStyle(color: Colors.white.withOpacity(0.7)),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )));
   }
 }
 
