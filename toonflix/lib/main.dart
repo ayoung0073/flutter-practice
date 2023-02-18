@@ -32,15 +32,18 @@ class App extends StatelessWidget {
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment:
                         MainAxisAlignment.end, // 하나의 Row(수평 방향)에서 가장 끝으로
                     children: [
                       SizedBox(
+                        // Total Balance 텍스트 위의 공간을 만들어준다.
                         // SizedBox를 이용해서 공간을 만든다.
-                        height: 80,
+                        height: 130,
                       ),
+                      // Total Balance 텍스트 위의 공간을 만들어준다.
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
@@ -51,10 +54,52 @@ class App extends StatelessWidget {
                                   fontWeight: FontWeight.w800)),
                           Text(
                             "Welcome back",
-                            style:
-                                TextStyle(color: Colors.white.withOpacity(0.7)),
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.7),
+                            ),
                           ),
                         ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Text(
+                    "Total Balance",
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8), fontSize: 22),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "\$ 5 197 184",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 43,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    // Container Widget
+                    // div. child를 갖고 있는 div
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 50),
+                          child: Text(
+                            "Transfer",
+                            style: TextStyle(fontSize: 22),
+                          ),
+                        ),
                       )
                     ],
                   )
