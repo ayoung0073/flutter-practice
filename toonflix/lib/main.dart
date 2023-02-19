@@ -17,6 +17,8 @@ void main() {
 // 앱의 root Widget.
 // 모든 화면과 버튼 등등 모든 것들이 App Widget으로부터 온다.
 class App extends StatelessWidget {
+  const App({super.key});
+
   // Widget을 return 하는 build 메서드
   @override
   Widget build(BuildContext context) {
@@ -28,9 +30,9 @@ class App extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
             // home: 우리 앱의 home에 있을 때 보여진다.
-            backgroundColor: Color(0xFF181818),
+            backgroundColor: const Color(0xFF181818),
             body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -38,7 +40,7 @@ class App extends StatelessWidget {
                     mainAxisAlignment:
                         MainAxisAlignment.end, // 하나의 Row(수평 방향)에서 가장 끝으로
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         // Total Balance 텍스트 위의 공간을 만들어준다.
                         // SizedBox를 이용해서 공간을 만든다.
                         height: 130,
@@ -47,7 +49,7 @@ class App extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text("Hey, Jenny",
+                          const Text("Hey, Jenny",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 23,
@@ -62,7 +64,7 @@ class App extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
                   Text(
@@ -70,10 +72,10 @@ class App extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white.withOpacity(0.8), fontSize: 22),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     "\$ 5 197 184",
                     style: TextStyle(
                       color: Colors.white,
@@ -81,7 +83,7 @@ class App extends StatelessWidget {
                       fontSize: 43,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Row(
@@ -92,7 +94,7 @@ class App extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.amber,
                             borderRadius: BorderRadius.circular(40)),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 20, horizontal: 50),
                           child: Text(
