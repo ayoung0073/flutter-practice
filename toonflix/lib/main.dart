@@ -127,52 +127,69 @@ class App extends StatelessWidget {
                     height: 20,
                   ),
                   Container(
+                    // 어떤 아이템이 overflow 되었을 때 Container로 하여금 어떻게 동작할 건지 설정
+                    clipBehavior: Clip.hardEdge, // hardEdge: 나머지 부분을 잘라낸다.
                     // Container의 decoration 기능!
                     decoration: BoxDecoration(
                         color: const Color(0xFF1F2123),
                         borderRadius: BorderRadius.circular(20)),
                     child: Padding(
                       padding: const EdgeInsets.all(30),
-                      child: Row(children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              "Euro",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "6 428",
+                                  "Euro",
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
+                                      color: Colors.white,
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  height: 10,
                                 ),
-                                Text(
-                                  "EUR",
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.7),
-                                    fontSize: 20,
-                                  ),
-                                ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "6 428",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "EUR",
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.7),
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
+                            ),
+                            Transform.translate(
+                              // 아이콘 이동시키기
+                              offset: const Offset(-5, 20),
+                              child: Transform.scale(
+                                // 스케일 업
+                                scale: 2.2,
+                                child: const Icon(
+                                  Icons.euro_rounded,
+                                  color: Colors.white,
+                                  size: 88,
+                                ),
+                              ),
                             )
-                          ],
-                        )
-                      ]),
+                          ]),
                     ),
-                  )
+                  ),
                 ],
               ),
             )));
