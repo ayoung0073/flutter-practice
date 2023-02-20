@@ -101,6 +101,77 @@ class App extends StatelessWidget {
                         textColor: Colors.white,
                       )
                     ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween, // 수평
+                    crossAxisAlignment: CrossAxisAlignment.end, // 수직
+                    children: [
+                      const Text(
+                        "Wallets",
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        "View All",
+                        // 컴파일할 때 알기 힘든 값인 opacity 값을 담은 함수를 쓰고있어서 const를 생략해야 한다.
+                        style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    // Container의 decoration 기능!
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF1F2123),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: Row(children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Euro",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  "6 428",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "EUR",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.7),
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      ]),
+                    ),
                   )
                 ],
               ),
