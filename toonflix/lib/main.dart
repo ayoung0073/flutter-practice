@@ -1,9 +1,8 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
+import 'package:toonflix/widgets/button.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
   // runApp은 하나의 argument(Widget 타입)를 필요로 한다.
   // 여러 Widget들이 합쳐서 UI를 만드는 방식
 }
@@ -32,7 +31,7 @@ class App extends StatelessWidget {
             // home: 우리 앱의 home에 있을 때 보여진다.
             backgroundColor: const Color(0xFF181818),
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -87,21 +86,19 @@ class App extends StatelessWidget {
                     height: 40,
                   ),
                   Row(
+                    // Row에 있는 두 위젯이(버튼이) 멀어지도록 함
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     // Container Widget
                     // div. child를 갖고 있는 div
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(40)),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 50),
-                          child: Text(
-                            "Transfer",
-                            style: TextStyle(fontSize: 22),
-                          ),
-                        ),
+                    children: const [
+                      Button(
+                          text: "Transfer",
+                          backgroundColor: Colors.amber,
+                          textColor: Colors.black),
+                      Button(
+                        text: "Request",
+                        backgroundColor: Color(0xFF1F2123),
+                        textColor: Colors.white,
                       )
                     ],
                   )
