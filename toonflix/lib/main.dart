@@ -136,26 +136,21 @@ class App extends StatelessWidget {
                       icon: Icons.euro_rounded,
                       isInverted: false,
                     ),
-                    Transform.translate(
-                      // 카드끼리 포개지게 함
-                      offset: const Offset(0, -20),
-                      child: const CurrencyCard(
-                        name: "Dollar",
-                        code: "USD",
-                        amount: "55 622",
-                        icon: Icons.attach_money_outlined,
-                        isInverted: true,
-                      ),
+                    const CurrencyCard(
+                      name: "Dollar",
+                      code: "USD",
+                      amount: "55 622",
+                      icon: Icons.attach_money_outlined,
+                      isInverted: true,
+                      order: 2,
                     ),
-                    Transform.translate(
-                      offset: const Offset(0, -40),
-                      child: const CurrencyCard(
-                        name: "Rupee",
-                        code: "INR",
-                        amount: "28 981",
-                        icon: Icons.currency_rupee_outlined,
-                        isInverted: false,
-                      ),
+                    const CurrencyCard(
+                      name: "Rupee",
+                      code: "INR",
+                      amount: "28 981",
+                      icon: Icons.currency_rupee_outlined,
+                      isInverted: false,
+                      order: 3,
                     ),
                   ],
                 ),
