@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int totalSeconds = 60 * 25; // 25분
+  bool isRunning = false;
+
   late Timer timer;
 
   void onStartPressed() {
@@ -21,6 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       onTick, // 괄호()를 넣으면 함수를 바로 실행하는 걸 의미하는 것이기 때문에 생략해야 한다.
     );
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  void onPausePressed() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+    });
   }
 
   void onTick(Timer timer) {
@@ -53,10 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 2,
             child: Center(
               child: IconButton(
-                onPressed: onStartPressed,
+                onPressed: isRunning ? onPausePressed : onStartPressed,
                 iconSize: 100,
                 icon: Icon(
-                  Icons.play_circle_outlined,
+                  isRunning
+                      ? Icons.pause_circle_outline
+                      : Icons.play_circle_outlined,
                   color: Theme.of(context).cardColor,
                 ),
               ),
