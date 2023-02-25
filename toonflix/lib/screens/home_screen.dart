@@ -37,6 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void reset() {
+    onPausePressed();
+    setState(() {
+      totalSeconds = twentyFiveMinutes;
+    });
+  }
+
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
       setState(() {
@@ -67,12 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 1,
             child: Container(
               alignment: Alignment.bottomCenter,
-              child: Text(
-                formatSeconds(totalSeconds),
-                style: TextStyle(
-                  color: Theme.of(context).cardColor,
-                  fontSize: 80,
-                  fontWeight: FontWeight.w600,
+              child: TextButton(
+                onPressed: reset,
+                child: Text(
+                  formatSeconds(totalSeconds),
+                  style: TextStyle(
+                    color: Theme.of(context).cardColor,
+                    fontSize: 80,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
