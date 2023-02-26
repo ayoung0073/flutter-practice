@@ -27,23 +27,62 @@ class HomeScreen extends StatelessWidget {
         future: webtoons,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ListView.separated(
-              scrollDirection: Axis.vertical,
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                var webtoon = snapshot.data![index];
-                return Text(webtoon.title);
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 50,
+            return Column(children: [
+              const SizedBox(
+                height: 100,
               ),
-            );
+              Expanded(child: makeList(snapshot))
+            ]);
           } else {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
         },
+      ),
+    );
+  }
+
+  ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
+      itemCount: snapshot.data!.length,
+      itemBuilder: (context, index) {
+        var webtoon = snapshot.data![index];
+        return Column(
+          children: [
+            Container(
+              width: 200,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 1,
+                      offset: const Offset(10, 10),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ]),
+              child: Image.network(webtoon.thumb),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              webtoon.title,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(
+        width: 30,
       ),
     );
   }
