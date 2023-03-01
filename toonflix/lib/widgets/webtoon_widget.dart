@@ -32,7 +32,7 @@ class Webtoon extends StatelessWidget {
           Hero(
             tag: id,
             child: Container(
-              height: 250,
+              height: MediaQuery.of(context).size.height * 0.33, // 전체 화면의 33%
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
