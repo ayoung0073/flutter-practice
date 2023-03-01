@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toonflix/models/webtoon_detail_model.dart';
 import 'package:toonflix/models/webtoon_episode_model.dart';
 import 'package:toonflix/services/webtoon_api_service.dart';
@@ -22,6 +23,8 @@ class _DetailScreenState extends State<DetailScreen> {
   // Future<WebtoonDetailModel> webtoon = ApiService.getToonById(widget.id); // error
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
+  late SharedPreferences preferences;
+  bool isLiked = false;
 
   @override
   void initState() {
@@ -30,6 +33,39 @@ class _DetailScreenState extends State<DetailScreen> {
     webtoon =
         ApiService.getToonById(widget.id); // initState에서는 widget을 참조할 수 있다.
     episodes = ApiService.getLatestEpisodesById(widget.id);
+    initPreferences();
+  }
+
+  initPreferences() async {
+    preferences =
+        await SharedPreferences.getInstance(); // 휴대폰 저장소에 access를 얻는다.
+    final likeToons = preferences
+        .getStringList("likeToons"); // likeToons라는 키의 String List가 있는지 확인한다.
+    if (likeToons != null) {
+      if (likeToons.contains(widget.id)) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    } else {
+      // 사용자가 처음 앱을 실행하는 경우엔 `likeToons`가 존재하지 않아 만들어주는 코드ㅡ
+      await preferences.setStringList("likeToons", []);
+    }
+  }
+
+  onHeartTap() async {
+    final likeToons = preferences.getStringList("likeToons");
+    if (likeToons != null) {
+      if (isLiked) {
+        likeToons.remove(widget.id);
+      } else {
+        likeToons.add(widget.id);
+      }
+      await preferences.setStringList("likeToons", likeToons);
+      setState(() {
+        isLiked = !isLiked;
+      });
+    }
   }
 
   @override
@@ -46,6 +82,16 @@ class _DetailScreenState extends State<DetailScreen> {
             fontSize: 24,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: onHeartTap,
+            icon: Icon(
+              isLiked
+                  ? Icons.favorite_outlined
+                  : Icons.favorite_outline_outlined,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         // overflow 문제를 해결한다.
